@@ -1,0 +1,5 @@
+FROM mysql
+LABEL maintainer="rodrigotmg@gmail.com"
+
+# Copy the database schema to the /data directory
+ADD db_init.sql /docker-entrypoint-initdb.d/db_init.sql
