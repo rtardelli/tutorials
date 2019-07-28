@@ -1,5 +1,10 @@
-FROM mysql
+FROM mysql:5.7
 LABEL maintainer="rodrigotmg@gmail.com"
 
-# Copy the database schema to the /data directory
+# Copy the database schema to the init directory
 ADD db_init.sql /docker-entrypoint-initdb.d/db_init.sql
+
+ENV MYSQL_ROOT_PASSWORD=1234
+ENV MYSQL_USER=userone
+ENV MYSQL_PASSWORD=passwordone
+ENV MYSQL_DATABASE=test-db

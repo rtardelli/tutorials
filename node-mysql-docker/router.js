@@ -1,5 +1,5 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 // middleware that is specific to this router
 router.use((req, res, next) => {
@@ -8,17 +8,28 @@ router.use((req, res, next) => {
 });
 // define the home page route
 router.get('/', (req, res) => {
-  res.send('home page');
+  console.log("home page");
+  res.send('Hello World');
 });
 // define the about route
-router.get('/album', (req, res) => {
-  // TODO: Implement
-  res.send('about page');
+router.get('/album', (req, res, next) => {
+  console.log("get /album");
+  req.connection.query('SELECT * FROM album', (err, result) => {
+    if(err) return next(err);
+
+    console.log("Result: " + result);
+    res.json(result);
+  });
 });
 
-router.get('/photos', (req, res) => {
-  // TODO: Implement
-  res.send('about page');
+router.get('/photo', (req, res, next) => {
+  console.log("get /photo");
+  req.connection.query('SELECT * FROM photo', (err, result) => {
+    if(err) return next(err);
+
+    console.log("Result: " + result);
+    res.json(result);
+  });
 });
 
 module.exports = router;
