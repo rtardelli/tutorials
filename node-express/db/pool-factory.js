@@ -9,8 +9,8 @@ const logger = require('../logConfig');
 const pool  = mysql.createPool({
   connectionLimit : 10,
   host : 'localhost',
-  user : 'userone',
-  password : 'passwordone',
+  user : 'user1',
+  password : 'password1',
   database : 'test-db'
 });
 

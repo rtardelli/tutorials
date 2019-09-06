@@ -1,7 +1,7 @@
 const express = require('express');
 const compression = require('compression');
 const logger = require('./logConfig');
-const router = require('./router');
+const userRouter = require('./routes/user');
 const pool = require('./db/pool-factory')
 const connectionMiddleware = require('./db/connection-middleware');
 const app = express();
@@ -15,7 +15,7 @@ app.use(compression());
 // Custom middleware for connection pool
 app.use(connectionMiddleware(pool));
 
-app.use('/', router);
+app.use('/user', userRouter);
 
 // Error middleware
 app.use((err, req, res, next) => {
